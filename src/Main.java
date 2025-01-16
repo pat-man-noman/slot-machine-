@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -12,9 +14,15 @@ public class Main {
         Random random = new Random();
         int currentAmount = main.userAmount;
         int currentMachine = main.machine;
-
+        List<String> user = new ArrayList<>();
+        Scanner input = new Scanner(System.in);
+        System.out.print("Please enter machine number: ");
+        String machineNumber = input.nextLine();
+        user.add(machineNumber);
+        System.out.print("Please enter User name: ");
+        String userName = input.nextLine();
+        user.add(userName);
         while (true){
-            Scanner input = new Scanner(System.in);
             System.out.println("machine: "+currentMachine);
             System.out.println("userAmount: "+currentAmount);
             System.out.print("option: Spin or Cash" );
@@ -38,11 +46,13 @@ public class Main {
             } else if (option.equals("cash")){
                 if (currentAmount >= 200){
                     int amountWon = currentAmount - 200;
-                    System.out.println("YOU WON $"+amountWon+"]");
+                    System.out.println("User:"+user.get(1));
+                    System.out.println("YOU WON $"+amountWon+" at Machine "+user.get(0));
                     System.exit(0);
                 } else {
                     int amountLost = 200 - currentAmount;
-                    System.out.println("YOU LOST $"+amountLost+"]");
+                    System.out.println("User:"+user.get(1));
+                    System.out.println("YOU LOST $"+amountLost+" at Machine "+user.get(0));
                     System.exit(0);
                 }
             } else if (currentAmount == 0) {
